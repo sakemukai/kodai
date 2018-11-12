@@ -72,17 +72,17 @@ for src, dst, weight in inputs:
     g.add_edge(src, dst, weight)
     g.add_edge(dst, src, weight)
 
-with open('a.csv', 'w') as f:
-    writer = csv.writer(f, lineterminator='\n') # 改行コード（\n）を指定しておく
 
 n = matrix_size(inputs)
 row = []
 matrix = []
+print('[',end="")
 for i in range(0,n):
     d = Dijkstra(g, i)
     for j in range(0,n):
         row.append(round(d.shortest_distance(j)-i,1))
+        print(round(d.shortest_distance(j)-i,1)," ",end="")
     matrix.append(row)
-    print(i)
-    print(row)
+    print()
     row = []
+print(']')
